@@ -88,7 +88,6 @@ public class QuestManager : MonoBehaviour
         if (++messageIndex < m.Count)
         {
             canvas.SetActive(true);
-            Debug.Log("Complete ID: " + completedId.ToString() + " " + messageIndex.ToString());
             effect.Run(m[messageIndex]);
         }
         else

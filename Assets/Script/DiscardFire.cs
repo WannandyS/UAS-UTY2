@@ -17,4 +17,13 @@ public class DiscardFire : MonoBehaviour
         }
         OnTrigger?.Invoke();
     }
+
+    public void TriggerOnCount()
+    {
+        if (_count < count)
+        {
+            OnTrigger?.Invoke();
+            _count++;
+        }
+    }
 }

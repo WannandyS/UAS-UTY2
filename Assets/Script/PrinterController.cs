@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using System.Collections;
+using UnityEngine.Events;
 
 public class PrinterController : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class PrinterController : MonoBehaviour
     private GameObject currentPaperStack;
     private Coroutine audioRoutine;
 
+    public UnityEvent onPaperInserted;
+
     void Awake()
     {
         // 🔥 AUTO AMBIL AudioSource kalau lupa di Inspector
@@ -39,10 +42,16 @@ public class PrinterController : MonoBehaviour
         paperSocket.selectExited.AddListener(OnPaperRemoved);
     }
 
+    public void Test()
+    {
+        Debug.Log("Inserted");
+    }
+
     void OnPaperInserted(SelectEnterEventArgs args)
     {
         currentPaperStack = args.interactableObject.transform.gameObject;
         currentPrintCount = 0;
+        onPaperInserted?.Invoke();
     }
 
     void OnPaperRemoved(SelectExitEventArgs args)
